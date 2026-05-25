@@ -10,16 +10,16 @@ void setup() {
 }
 
 void loop() {
-  // UART ile gonder
+  // Send via UART
   Serial2.print("Wake");
 
-  // SPI ile gonder
+  // Send via SPI
   digitalWrite(5, LOW);
   SPI.transfer('U');
   SPI.transfer('p');
   digitalWrite(5, HIGH);
 
-  // I2C ile gonder
+  // Send via I2C
   Wire.beginTransmission(0x50);
   Wire.print("Neo");
   Wire.endTransmission();
