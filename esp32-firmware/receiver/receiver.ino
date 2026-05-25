@@ -6,11 +6,11 @@ void setup() {
   Serial2.begin(9600, SERIAL_8N1, 16, 17);
   Wire.begin(0x50);
   
-  // I2C icin tetikleyici fonksiyon
+  // Trigger function for I2C
   Wire.onReceive(veriGelince);
   
   pinMode(5, INPUT_PULLUP);
-  Serial.println("Sistem hazir.");
+  Serial.println("System ready.");
 }
 
 void veriGelince(int gelenByte) {
@@ -22,13 +22,13 @@ void veriGelince(int gelenByte) {
 }
 
 void loop() {
-  // UART dinleme
+  // Listening for UART
   if (Serial2.available()) {
     Serial.print("UART: ");
     Serial.println(Serial2.readString());
   }
 
-  // SPI dinleme (CS pinini kontrol et)
+  // Listening for SPI (Check CS pin)
   if (digitalRead(5) == LOW) {
     Serial.println("SPI: Up");
     delay(500);
